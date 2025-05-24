@@ -1,9 +1,9 @@
-import AuthContext from "./context/AuthContext"
-import HomePage from "./pages/Homepage"
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import NewArticle from "./pages/NewArticle"
-import Settings from "./pages/Settings"
-import Profile from "./pages/Profile"
+import AuthContext from './context/AuthContext';
+import HomePage from './pages/Homepage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NewArticle from './pages/NewArticle';
+import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         </Routes>
       </AuthContext>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
