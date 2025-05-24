@@ -1,21 +1,45 @@
 import { Link } from 'react-router-dom';
-import Box from '../components/Box';
-import { menus } from '../utils/constants';
+import Box from '../components/atom/Box';
+import { authenticatedMenus, unauthenticatedMenus } from '../utils/constants';
+import { useEffect, useState } from 'react';
 
 function Header() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [menus, setMenus] = useState([]);
+
+  useEffect(() => {
+    setIsAuthenticated(false);
+    if (isAuthenticated) {
+      setMenus(authenticatedMenus);
+    } else {
+      setMenus(unauthenticatedMenus);
+    }
+  }, []);
   return (
-    <Box className={'w-full bg-transparent max-w-2xl mx-auto'}>
-      <Box className={'flex justify-between items-center'}>
-        <h1 className={'text-2xl font-bold'}>Conduit</h1>
-        <Box className={'flex space-x-4'}>
-          {menus.map((menu, index) => (
-            <Link key={index} to={menu.link}>
-              {menu.name}
-            </Link>
-          ))}
+    <>
+      <Box className={'w-full bg-transparent max-w-7xl mx-auto my-5'}>
+        <Box className={'flex justify-between items-center'}>
+          <h1 className={'text-2xl font-bold'}>Conduit</h1>
+          <Box className={'flex space-x-4'}>
+            {menus?.map((menu, index) =>
+              menu?.name === 'Register' ? (
+                <Link
+                  className="px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-all duration-300"
+                  key={index}
+                  to={menu.link}>
+                  {menu.name}
+                </Link>
+              ) : (
+                <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
+                  {menu.name}
+                </Link>
+              )
+            )}
+          </Box>
         </Box>
       </Box>
-    </Box>
+      <hr />
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-export const menus = [
+export const authenticatedMenus = [
   {
     name: 'Home',
     link: '/'
@@ -14,5 +14,16 @@ export const menus = [
   {
     name: 'Profile',
     link: '/profile'
+  }
+];
+
+export const unauthenticatedMenus = [
+  {
+    name: 'Sign in',
+    link: '/login'
+  },
+  {
+    name: 'Register',
+    link: '/register'
   }
 ];
