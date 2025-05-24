@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom';
 import Box from '../components/atom/Box';
 import { authenticatedMenus, unauthenticatedMenus } from '../utils/constants';
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import AuthContext from '../context/AuthContext';
+import Button from '@/components/atom/Button';
 
 function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [menus, setMenus] = useState([]);
+  const { setAuthAction } = useContext(AuthContext);
 
   useEffect(() => {
     setIsAuthenticated(false);
@@ -23,12 +27,12 @@ function Header() {
           <Box className={'flex space-x-4'}>
             {menus?.map((menu, index) =>
               menu?.name === 'Register' ? (
-                <Link
+                <Button
+                  onClick={() => setAuthAction(true)}
                   className="px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-all duration-300"
-                  key={index}
-                  to={menu.link}>
+                  key={index}>
                   {menu.name}
-                </Link>
+                </Button>
               ) : (
                 <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
                   {menu.name}
