@@ -1,24 +1,7 @@
 import Box from '../components/Box'
+import { menus } from '../utils/constants'
 
 function Header() {
-    const menus = [
-        {
-            name: 'Home',
-            link: '/'
-        },
-        {
-            name: 'New Article',
-            link: '/new'
-        },
-        {
-            name: 'Settings',
-            link: '/settings'
-        },
-        {
-            name: 'Profile',
-            link: '/profile'
-        }
-    ]
     return (
         <Box className={'w-full bg-transparent'}>
             <div className={'flex justify-between items-center'}>
