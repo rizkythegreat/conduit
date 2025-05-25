@@ -1,33 +1,25 @@
 import Layout from '../layouts/Layout';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AuthContext from '../context/AuthContext';
 import Hero from '@/components/templates/Hero';
+import DialogLogin from '@/components/molecules/DialogRegister';
 
 function LoginPage() {
-  const { authAction, setAuthAction } = useContext(AuthContext);
+  const { authAction, setAuthAction, animation, setAnimation } = useContext(AuthContext);
+
+  const handleClose = () => {
+    setAnimation('animate-fadeOut');
+    setTimeout(() => {
+      setAuthAction(false);
+      setAnimation('');
+    }, 300);
+  };
+
+  useEffect(() => {}, [authAction]);
   return (
     <Layout>
       <Hero />
-      {/* <DialogLogin open={authAction} setOpen={setAuthAction} title="Welcome Back.">
-        <Box className={'flex flex-col gap-y-3 mb-8'}>
-          <Box className="flex items-center justify-center">
-            <Button type="button" className="hover:bg-gray-200 border rounded-full px-12 py-2">
-              <Box className="flex gap-3">
-                <GoogleLogoIcon className="w-6 h-6" />
-                Sign in With Google
-              </Box>
-            </Button>
-          </Box>
-          <Box className="flex items-center justify-center">
-            <Button type="button" className="hover:bg-gray-200 border rounded-full px-10 py-2">
-              <Box className="flex gap-3">
-                <FacebookLogoIcon className="w-6 h-6" />
-                Sign in With Facebook
-              </Box>
-            </Button>
-          </Box>
-        </Box>
-      </DialogLogin> */}
+      {authAction && <DialogLogin animation={animation} handleClose={handleClose} />}
     </Layout>
   );
 }

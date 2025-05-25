@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Box from '../atom/Box';
+import AuthContext from '@/context/AuthContext';
 
 function Hero() {
+  const { handleOpenModalRegister } = useContext(AuthContext);
   return (
     <>
       <Box className="flex justify-end mx-auto h-[80vh]">
@@ -13,7 +15,9 @@ function Hero() {
             <p className="text-2xl mt-4">A place to read, write, and deepen your understanding</p>
           </Box>
           <Box>
-            <button className="px-8 py-2 text-xl rounded-full hover:cursor-pointer bg-black text-white">
+            <button
+              onClick={() => handleOpenModalRegister()}
+              className="px-8 py-2 text-xl rounded-full hover:bg-gray-800 transition-btn bg-black text-white">
               Start reading
             </button>
           </Box>

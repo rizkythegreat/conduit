@@ -5,18 +5,36 @@ body {
 }
 
 /* Di global CSS atau module CSS */
-.dialog-animation {
-  transition-property: opacity, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+@layer utilities {
+  .transition-btn {
+    @apply transition-all duration-300 hover:cursor-pointer
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  .animate-fadeOut {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
 }
 
-.dialog-animation[data-state='open'] {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.dialog-animation[data-state='closed'] {
-  opacity: 0;
-  transform: scale(0.95);
-}

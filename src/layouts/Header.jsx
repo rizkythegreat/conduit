@@ -8,7 +8,7 @@ import AuthContext from '../context/AuthContext';
 function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [menus, setMenus] = useState([]);
-  const { setAuthAction } = useContext(AuthContext);
+  const { handleOpenModalRegister } = useContext(AuthContext);
 
   useEffect(() => {
     setIsAuthenticated(false);
@@ -33,8 +33,8 @@ function Header() {
               : menus?.map((menu, index) =>
                   menu?.name === 'Get Started' ? (
                     <button
-                      onClick={() => setAuthAction(true)}
-                      className="rounded-full hover:cursor-pointer px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-all duration-300"
+                      onClick={() => handleOpenModalRegister()}
+                      className="rounded-full px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-btn"
                       key={index}>
                       {menu.name}
                     </button>
