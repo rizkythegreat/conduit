@@ -6,7 +6,7 @@ function Hero() {
   const { handleOpenModalRegister } = useContext(AuthContext);
   return (
     <>
-      <Box className="flex justify-end sm:mx-auto md:h-[80vh] h-[70vh]">
+      <Box className="relative flex justify-end sm:mx-auto md:h-[80vh] h-[70vh]">
         <img
           src="/medium-image.webp"
           alt="hero"
