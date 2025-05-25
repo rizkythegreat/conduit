@@ -4,7 +4,6 @@ import { authenticatedMenus, unauthenticatedMenus } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
-import Button from '@/components/atom/Button';
 
 function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,12 +26,12 @@ function Header() {
           <Box className={'flex space-x-4'}>
             {menus?.map((menu, index) =>
               menu?.name === 'Register' ? (
-                <Button
+                <button
                   onClick={() => setAuthAction(true)}
                   className="px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-all duration-300"
                   key={index}>
                   {menu.name}
-                </Button>
+                </button>
               ) : (
                 <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
                   {menu.name}
