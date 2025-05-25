@@ -20,7 +20,7 @@ function Header() {
   }, []);
   return (
     <>
-      <Box className={'w-full bg-transparent max-w-7xl mx-auto my-5'}>
+      <Box className={'w-full bg-transparent xl:max-w-7xl md:max-w-xl max-w-sm mx-auto my-5'}>
         <Box className={'flex justify-between items-center'}>
           <h1 className={'text-2xl font-bold'}>Conduit</h1>
           <Box className={'flex space-x-4'}>
