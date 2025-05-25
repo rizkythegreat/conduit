@@ -1,4 +1,5 @@
 import Box from '@/components/atom/Box';
+import { thisYear } from '@/utils/dateFormat';
 import React from 'react';
 
 function Footer() {
@@ -6,7 +7,7 @@ function Footer() {
     <>
       <hr />
       <Box className="flex justify-center mt-10">
-        <p className="text-sm text-gray-600">© 2023 Conduit. All rights reserved.</p>
+        <p className="text-sm text-gray-600">© {thisYear()} Conduit. All rights reserved.</p>
       </Box>
     </>
   );
