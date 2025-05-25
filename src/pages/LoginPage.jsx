@@ -1,12 +1,13 @@
 import Layout from '../layouts/Layout';
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
+import Hero from '@/components/templates/Hero';
 
 function LoginPage() {
   const { authAction, setAuthAction } = useContext(AuthContext);
   return (
     <Layout>
-      <h1>LoginPage</h1>
+      <Hero />
       {/* <DialogLogin open={authAction} setOpen={setAuthAction} title="Welcome Back.">
         <Box className={'flex flex-col gap-y-3 mb-8'}>
           <Box className="flex items-center justify-center">

@@ -23,7 +23,7 @@ export const unauthenticatedMenus = [
     link: '/login'
   },
   {
-    name: 'Register',
+    name: 'Get Started',
     link: '/register'
   }
 ];

@@ -24,20 +24,26 @@ function Header() {
         <Box className={'flex justify-between items-center'}>
           <h1 className={'text-2xl font-bold'}>Conduit</h1>
           <Box className={'flex space-x-4'}>
-            {menus?.map((menu, index) =>
-              menu?.name === 'Register' ? (
-                <button
-                  onClick={() => setAuthAction(true)}
-                  className="px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-all duration-300"
-                  key={index}>
-                  {menu.name}
-                </button>
-              ) : (
-                <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
-                  {menu.name}
-                </Link>
-              )
-            )}
+            {isAuthenticated
+              ? menus?.map((menu, index) => (
+                  <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
+                    {menu.name}
+                  </Link>
+                ))
+              : menus?.map((menu, index) =>
+                  menu?.name === 'Get Started' ? (
+                    <button
+                      onClick={() => setAuthAction(true)}
+                      className="rounded-full hover:cursor-pointer px-4 py-2 text-white text-sm bg-black hover:bg-gray-800 transition-all duration-300"
+                      key={index}>
+                      {menu.name}
+                    </button>
+                  ) : (
+                    <button className="hover:cursor-pointer py-2 px-2 text-sm" key={index}>
+                      {menu.name}
+                    </button>
+                  )
+                )}
           </Box>
         </Box>
       </Box>
