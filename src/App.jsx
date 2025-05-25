@@ -1,11 +1,11 @@
-import AuthContext from './context/AuthContext';
-import HomePage from './pages/Homepage';
+import AuthContext from '@/context/AuthContext';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NewArticle from './pages/NewArticle';
-import Settings from './pages/Settings';
-import Profile from './pages/Profile';
-import LoginPage from './pages/LoginPage';
+import NewArticle from '@/pages/NewArticle';
+import Settings from '@/pages/Settings';
+import Profile from '@/pages/Profile';
+import LoginPage from '@/pages/LoginPage';
 import { useState } from 'react';
+import HomePage from '@/pages/HomePage';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false);
