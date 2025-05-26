@@ -9,11 +9,21 @@ import HomePage from '@/pages/HomePage';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false);
-  const [authAction, setAuthAction] = useState(false);
-  const [animation, setAnimation] = useState('');
+  const [authAction, setAuthAction] = useState({
+    register: false,
+    login: false
+  });
+  const [animation, setAnimation] = useState({
+    register: '',
+    login: ''
+  });
   const handleOpenModalRegister = () => {
-    setAnimation('animate-fadeIn');
-    setAuthAction(true);
+    setAnimation((prev) => ({ ...prev, register: 'animate-fadeIn' }));
+    setAuthAction((prev) => ({ ...prev, register: true }));
+  };
+  const handleOpenModalLogin = () => {
+    setAnimation((prev) => ({ ...prev, login: 'animate-fadeIn' }));
+    setAuthAction((prev) => ({ ...prev, login: true }));
   };
   return (
     <Router>
@@ -25,6 +35,7 @@ function App() {
           setAuthAction,
           animation,
           handleOpenModalRegister,
+          handleOpenModalLogin,
           setAnimation
         }}>
         <Routes>
