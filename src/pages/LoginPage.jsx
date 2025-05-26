@@ -9,14 +9,14 @@ function LoginPage() {
   const { authAction, setAuthAction, animation, setAnimation } = useContext(AuthContext);
 
   const handleCloseRegister = () => {
-    setAnimation('animate-fadeOut');
+    setAnimation((prev) => ({ ...prev, register: 'animate-fadeOut' }));
     setTimeout(() => {
       setAuthAction((prev) => ({ ...prev, register: false }));
       setAnimation('');
     }, 300);
   };
   const handleCloseLogin = () => {
-    setAnimation('animate-fadeOut');
+    setAnimation((prev) => ({ ...prev, login: 'animate-fadeOut' }));
     setTimeout(() => {
       setAuthAction((prev) => ({ ...prev, login: false }));
       setAnimation('');
@@ -28,12 +28,11 @@ function LoginPage() {
     <Layout>
       <Hero />
       {authAction?.register && (
-        <DialogRegister
-          animation={animation?.register}
-          handleClose={handlhandleCloseRegistereClose}
-        />
+        <DialogRegister animation={animation?.register} handleClose={handleCloseRegister} />
       )}
-      {authAction?.login && <DialogLogin animation={animation?.login} handleClose={handleClose} />}
+      {authAction?.login && (
+        <DialogLogin animation={animation?.login} handleClose={handleCloseLogin} />
+      )}
     </Layout>
   );
 }
