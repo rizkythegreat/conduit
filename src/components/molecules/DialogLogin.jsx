@@ -1,6 +1,9 @@
+import { FacebookLogoIcon, GoogleLogoIcon, MailboxIcon, X } from '@phosphor-icons/react';
 import React from 'react';
+import Box from '../atom/Box';
+import { Link } from 'react-router-dom';
 
-function DialogLogin() {
+function DialogLogin({ animation, handleClose }) {
   const signUpWith = [
     {
       name: 'Google',
@@ -23,7 +26,7 @@ function DialogLogin() {
       <div
         className={`bg-white rounded-lg shadow-lg p-6 w-full max-w-sm sm:max-w-xl transform ${animation}`}>
         <h2 className="xl:text-3xl text-2xl flex items-center justify-center mb-4 mt-8">
-          Join Conduit.
+          Welcome back.
         </h2>
         {signUpWith?.map((item, index) => (
           <Box key={index} className="xl:max-w-sm max-w-xs flex flex-col mx-auto">
@@ -34,8 +37,8 @@ function DialogLogin() {
           </Box>
         ))}
         <Box className="flex items-center justify-center mt-4">
-          <p>Don't have account?</p>
-          <Link className="ml-1 text-green-600 hover:text-green-900 transition-btn" to="/login">
+          <p>No account?</p>
+          <Link className="ml-1 text-green-800 hover:text-green-950 transition-btn" to="/login">
             Sign up
           </Link>
         </Box>

@@ -8,7 +8,7 @@ import AuthContext from '../context/AuthContext';
 function Header() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [menus, setMenus] = useState([]);
-  const { handleOpenModalRegister } = useContext(AuthContext);
+  const { handleOpenModalRegister, handleOpenModalLogin } = useContext(AuthContext);
 
   useEffect(() => {
     setIsAuthenticated(false);
@@ -39,7 +39,10 @@ function Header() {
                       {menu.name}
                     </button>
                   ) : (
-                    <button className="hover:cursor-pointer py-2 px-2 text-sm" key={index}>
+                    <button
+                      onClick={() => handleOpenModalLogin()}
+                      className="hover:cursor-pointer py-2 px-2 text-sm"
+                      key={index}>
                       {menu.name}
                     </button>
                   )
