@@ -1,39 +1,54 @@
-import Layout from '../layouts/Layout';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import AuthContext from '../context/AuthContext';
-import Hero from '@/components/templates/Hero';
-import DialogRegister from '@/components/molecules/DialogRegister';
-import DialogLogin from '@/components/molecules/DialogLogin';
+import LoginScreen from '@/components/templates/LoginScreen';
 
 function LoginPage() {
-  const { authAction, setAuthAction, animation, setAnimation } = useContext(AuthContext);
+  const {
+    authAction,
+    setAuthAction,
+    animation,
+    setAnimation,
+    handleOpenModalRegister,
+    handleOpenModalLogin
+  } = useContext(AuthContext);
 
   const handleCloseRegister = () => {
     setAnimation((prev) => ({ ...prev, register: 'animate-fadeOut' }));
     setTimeout(() => {
       setAuthAction((prev) => ({ ...prev, register: false }));
-      setAnimation('');
+      setAnimation((prev) => ({ ...prev, register: '' }));
     }, 300);
   };
   const handleCloseLogin = () => {
     setAnimation((prev) => ({ ...prev, login: 'animate-fadeOut' }));
     setTimeout(() => {
       setAuthAction((prev) => ({ ...prev, login: false }));
-      setAnimation('');
+      setAnimation((prev) => ({ ...prev, login: '' }));
     }, 300);
+  };
+
+  const handleClickSignUp = () => {
+    setAuthAction((prev) => ({ ...prev, login: false }));
+    setAnimation((prev) => ({ ...prev, login: '' }));
+    handleOpenModalRegister();
+  };
+
+  const handleClickSignIn = () => {
+    setAuthAction((prev) => ({ ...prev, register: false }));
+    setAnimation((prev) => ({ ...prev, register: '' }));
+    handleOpenModalLogin();
   };
 
   useEffect(() => {}, [authAction]);
   return (
-    <Layout>
-      <Hero />
-      {authAction?.register && (
-        <DialogRegister animation={animation?.register} handleClose={handleCloseRegister} />
-      )}
-      {authAction?.login && (
-        <DialogLogin animation={animation?.login} handleClose={handleCloseLogin} />
-      )}
-    </Layout>
+    <LoginScreen
+      animation={animation}
+      authAction={authAction}
+      handleClickSignUp={handleClickSignUp}
+      handleClickSignIn={handleClickSignIn}
+      handleCloseRegister={handleCloseRegister}
+      handleCloseLogin={handleCloseLogin}
+    />
   );
 }
 

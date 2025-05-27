@@ -1,9 +1,8 @@
 import React from 'react';
 import { X, GoogleLogoIcon, FacebookLogoIcon, MailboxIcon } from '@phosphor-icons/react';
 import Box from '../atom/Box';
-import { Link } from 'react-router-dom';
 
-function DialogRegister({ animation, handleClose }) {
+function DialogRegister({ animation, handleClose, handleClickSignIn }) {
   const signUpWith = [
     {
       name: 'Google',
@@ -23,7 +22,7 @@ function DialogRegister({ animation, handleClose }) {
   ];
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
         <div
           className={`bg-white rounded-lg shadow-lg p-6 w-full max-w-sm sm:max-w-xl transform ${animation}`}>
           <h2 className="xl:text-3xl text-2xl flex items-center justify-center mb-4 mt-8">
@@ -39,9 +38,11 @@ function DialogRegister({ animation, handleClose }) {
           ))}
           <Box className="flex items-center justify-center mt-4">
             <p>Already have an Account?</p>
-            <Link className="ml-1 text-green-600 hover:text-green-900 transition-btn" to="/login">
+            <button
+              onClick={handleClickSignIn}
+              className="ml-1 text-green-600 hover:text-green-900 transition-btn">
               Sign in
-            </Link>
+            </button>
           </Box>
           <button
             onClick={handleClose}
