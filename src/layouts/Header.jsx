@@ -6,13 +6,11 @@ import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 
 function Header() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [menus, setMenus] = useState([]);
-  const { handleOpenModalRegister, handleOpenModalLogin } = useContext(AuthContext);
+  const { handleOpenModalRegister, handleOpenModalLogin, loggedIn } = useContext(AuthContext);
 
   useEffect(() => {
-    setIsAuthenticated(false);
-    if (isAuthenticated) {
+    if (loggedIn) {
       setMenus(authenticatedMenus);
     } else {
       setMenus(unauthenticatedMenus);
@@ -27,7 +25,7 @@ function Header() {
           }>
           <h1 className={'text-2xl font-bold'}>Conduit</h1>
           <Box className={'flex space-x-4'}>
-            {isAuthenticated
+            {loggedIn
               ? menus?.map((menu, index) => (
                   <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
                     {menu.name}
@@ -53,7 +51,7 @@ function Header() {
           </Box>
         </Box>
       </Box>
-      <hr />
+      <hr className={`${loggedIn ? 'border-gray-400/20' : ''}`} />
     </>
   );
 }

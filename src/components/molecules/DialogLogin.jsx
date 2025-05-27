@@ -1,4 +1,5 @@
 import { FacebookLogoIcon, GoogleLogoIcon, MailboxIcon, X } from '@phosphor-icons/react';
+import { signInWithGoogle, signInWithFacebook } from '@/libs/firebase';
 import React from 'react';
 import Box from '../atom/Box';
 
@@ -7,19 +8,31 @@ function DialogLogin({ animation, handleClose, handleClickSignUp }) {
     {
       name: 'Google',
       text: 'Sign in with Google',
-      icon: GoogleLogoIcon
+      icon: GoogleLogoIcon,
+      handler: signInWithGoogle
     },
     {
       name: 'Facebook',
       text: 'Sign in with Facebook',
-      icon: FacebookLogoIcon
+      icon: FacebookLogoIcon,
+      handler: signInWithFacebook
     },
     {
       name: 'Email',
       text: 'Sign in with Email',
-      icon: MailboxIcon
+      icon: MailboxIcon,
+      handler: () => {}
     }
   ];
+
+  const handleAuth = async (handler) => {
+    try {
+      await handler();
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
       <div
@@ -29,7 +42,9 @@ function DialogLogin({ animation, handleClose, handleClickSignUp }) {
         </h2>
         {signUpWith?.map((item, index) => (
           <Box key={index} className="xl:max-w-sm max-w-xs flex flex-col mx-auto">
-            <button className="py-2 transition-btn flex items-center text-white my-2 bg-slate-900 hover:bg-slate-700 rounded-full">
+            <button
+              onClick={() => handleAuth(item.handler)}
+              className="py-2 transition-btn flex items-center text-white my-2 bg-slate-900 hover:bg-slate-700 rounded-full">
               <item.icon className="w-5 h-5 ml-3" weight="bold" />
               <p className="w-full font-thin">{item.text}</p>
             </button>

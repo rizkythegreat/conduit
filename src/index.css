@@ -4,12 +4,21 @@ body {
   background-color: #f7f4ed;
 }
 
+body.logged-in {
+  background-color: #ffffff;
+}
+
 /* Font face declaration */
 @font-face {
   font-family: 'gt-super';
   src: url('/fonts/GT-Super-Text-Regular-Trial.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'sohne';
+  src: url('/fonts/sohne/TestSohne-Kraftig.otf') format('opentype');
   font-display: swap;
 }
 
@@ -38,5 +47,8 @@ body {
   
   .custom-font {
     font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+  .font-sohne {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 }

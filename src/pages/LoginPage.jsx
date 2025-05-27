@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import AuthContext from '../context/AuthContext';
 import LoginScreen from '@/components/templates/LoginScreen';
+import { Navigate } from 'react-router-dom';
 
 function LoginPage() {
   const {
@@ -38,6 +39,10 @@ function LoginPage() {
     setAnimation((prev) => ({ ...prev, register: '' }));
     handleOpenModalLogin();
   };
+
+  if (localStorage.getItem('token')) {
+    return <Navigate to="/homepage" />;
+  }
 
   useEffect(() => {}, [authAction]);
   return (

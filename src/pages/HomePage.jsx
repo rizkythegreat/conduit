@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../layouts/Layout';
+import HomepageScreen from '@/components/templates/HomepageScreen';
 
 function HomePage() {
   return (
     <Layout>
-      <h1>HomePage</h1>
+      <HomepageScreen />
     </Layout>
   );
 }

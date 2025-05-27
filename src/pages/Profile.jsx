@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../layouts/Layout';
+import ProfileScreen from '@/components/templates/ProfileScreen';
 
 function Profile() {
   return (
     <Layout>
-      <div>Profile</div>
+      <ProfileScreen />
     </Layout>
   );
 }
