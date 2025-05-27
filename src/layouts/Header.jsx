@@ -23,7 +23,7 @@ function Header() {
       <Box className={'w-full bg-transparent mx-auto my-5'}>
         <Box
           className={
-            'flex justify-between items-center md:max-w-2xl xl:max-w-5xl mx-5 max-w-sm md:mx-auto'
+            'flex justify-between md:max-w-2xl xl:max-w-5xl mx-5 max-w-sm md:mx-auto items-center'
           }>
           <h1 className={'text-2xl font-bold'}>Conduit</h1>
           <Box className={'flex space-x-4'}>
