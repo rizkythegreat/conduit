@@ -20,8 +20,11 @@ function Header() {
   }, []);
   return (
     <>
-      <Box className={'w-full bg-transparent xl:max-w-7xl md:max-w-xl max-w-sm mx-auto my-5'}>
-        <Box className={'flex justify-between items-center'}>
+      <Box className={'w-full bg-transparent mx-auto my-5'}>
+        <Box
+          className={
+            'flex justify-between items-center md:max-w-2xl xl:max-w-5xl mx-5 max-w-sm md:mx-auto'
+          }>
           <h1 className={'text-2xl font-bold'}>Conduit</h1>
           <Box className={'flex space-x-4'}>
             {isAuthenticated
