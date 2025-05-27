@@ -1,40 +1,42 @@
 @import 'tailwindcss';
 
 body {
-    background-color: #f7f4ed;
+  background-color: #f7f4ed;
 }
 
-/* Di global CSS atau module CSS */
+/* Font face declaration */
+@font-face {
+  font-family: 'gt-super';
+  src: url('/fonts/GT-Super-Text-Regular-Trial.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer utilities {
   .transition-btn {
-    @apply transition-all duration-300 hover:cursor-pointer
+    @apply transition-all duration-300 hover:cursor-pointer;
   }
+  
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
   }
+  
   @keyframes fadeOut {
-    from {
-      opacity: 1;
-      transform: scale(1);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.95);
-    }
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
   }
 
   .animate-fadeIn {
     animation: fadeIn 0.3s ease-out forwards;
   }
+  
   .animate-fadeOut {
     animation: fadeOut 0.3s ease-out forwards;
   }
+  
+  .custom-font {
+    font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
 }
-

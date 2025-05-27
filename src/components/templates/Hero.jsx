@@ -14,7 +14,7 @@ function Hero() {
         />
         <Box className="z-10 xl:w-8/13 w-full flex flex-col xl:justify-center md:ml-20 xl:ml-0 ml-4 xl:mt-0 mt-20 justify-start">
           <Box className={'flex flex-col gap-y-3 mb-8'}>
-            <h1 className="md:text-8xl text-4xl">
+            <h1 className="md:text-8xl text-4xl custom-font">
               Human <br /> stories & ideas
             </h1>
             <p className="md:text-2xl text-xl mt-4">
