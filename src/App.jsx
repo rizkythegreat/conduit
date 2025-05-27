@@ -1,5 +1,5 @@
 import AuthContext from '@/context/AuthContext';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import NewArticle from '@/pages/NewArticle';
 import Settings from '@/pages/Settings';
 import Profile from '@/pages/Profile';
@@ -12,6 +12,7 @@ import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [authAction, setAuthAction] = useState({
     register: false,
@@ -29,6 +30,22 @@ function App() {
   const handleOpenModalLogin = () => {
     setAnimation((prev) => ({ ...prev, login: 'animate-fadeIn' }));
     setAuthAction((prev) => ({ ...prev, login: true }));
+  };
+
+  const handleSignOutButton = () => {
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        await auth.signOut();
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+        <Navigate to="/" />;
+      }
+    }, 1000);
   };
 
   useEffect(() => {
@@ -60,12 +77,14 @@ function App() {
         value={{
           user,
           loggedIn,
+          loading,
           setLoggedIn,
           authAction,
           setAuthAction,
           animation,
           handleOpenModalRegister,
           handleOpenModalLogin,
+          handleSignOutButton,
           setAnimation
         }}>
         <Routes>

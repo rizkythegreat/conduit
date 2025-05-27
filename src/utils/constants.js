@@ -14,13 +14,17 @@ export const authenticatedMenus = [
   {
     name: 'Profile',
     link: '/profile'
+  },
+  {
+    name: 'Sign out',
+    link: '/logout'
   }
 ];
 
 export const unauthenticatedMenus = [
   {
     name: 'Sign in',
-    link: '/login'
+    link: '/'
   },
   {
     name: 'Get Started',

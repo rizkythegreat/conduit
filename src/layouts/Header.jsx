@@ -7,7 +7,8 @@ import AuthContext from '../context/AuthContext';
 
 function Header() {
   const [menus, setMenus] = useState([]);
-  const { handleOpenModalRegister, handleOpenModalLogin, loggedIn } = useContext(AuthContext);
+  const { handleOpenModalRegister, handleOpenModalLogin, loggedIn, handleSignOutButton } =
+    useContext(AuthContext);
 
   useEffect(() => {
     if (loggedIn) {
@@ -26,11 +27,20 @@ function Header() {
           <h1 className={'text-2xl font-bold'}>Conduit</h1>
           <Box className={'flex space-x-4'}>
             {loggedIn
-              ? menus?.map((menu, index) => (
-                  <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
-                    {menu.name}
-                  </Link>
-                ))
+              ? menus?.map((menu, index) =>
+                  menu?.name === 'Sign out' ? (
+                    <button
+                      onClick={() => handleSignOutButton()}
+                      className="px-4 py-2 text-sm transition-btn"
+                      key={index}>
+                      {menu.name}
+                    </button>
+                  ) : (
+                    <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
+                      {menu.name}
+                    </Link>
+                  )
+                )
               : menus?.map((menu, index) =>
                   menu?.name === 'Get Started' ? (
                     <button
