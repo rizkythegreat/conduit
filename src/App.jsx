@@ -20,7 +20,8 @@ function App() {
   });
   const [animation, setAnimation] = useState({
     register: '',
-    login: ''
+    login: '',
+    menu: ''
   });
   console.log('user', user);
   const handleOpenModalRegister = () => {

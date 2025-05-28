@@ -11,11 +11,26 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname } = useLocation();
   console.log('pathname', pathname);
-  const { handleOpenModalRegister, handleOpenModalLogin, loggedIn, handleSignOutButton } =
-    useContext(AuthContext);
+  const {
+    handleOpenModalRegister,
+    handleOpenModalLogin,
+    loggedIn,
+    handleSignOutButton,
+    animation,
+    setAnimation
+  } = useContext(AuthContext);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
+  const toggleMobileMenu = (type) => {
+    if (type === 'close') {
+      setAnimation((prev) => ({ ...prev, menu: 'animate-fadeOut' }));
+      setTimeout(() => {
+        setAnimation((prev) => ({ ...prev, menu: '' }));
+        setMobileMenuOpen(false);
+      }, 300);
+    } else {
+      setAnimation((prev) => ({ ...prev, menu: 'animate-fadeIn' }));
+      setMobileMenuOpen(true);
+    }
   };
 
   const isActive = (menuLink) => {
@@ -81,14 +96,17 @@ function Header() {
           {loggedIn && (
             <button
               className="md:hidden p-2 rounded-md focus:outline-none"
-              onClick={toggleMobileMenu}>
+              onClick={
+                mobileMenuOpen ? () => toggleMobileMenu('close') : () => toggleMobileMenu('open')
+              }>
               {mobileMenuOpen ? <X size={24} weight="bold" /> : <List size={24} weight="bold" />}
             </button>
           )}
         </Box>
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <Box className="md:hidden mt-4 px-5 py-3 bg-white shadow-lg rounded-lg">
+          <Box
+            className={`${animation.menu} md:hidden fixed top-16 right-5 z-50 w-4/5 max-w-xs px-5 py-4 bg-white shadow-xl rounded-xl space-y-2`}>
             {menus?.map((menu, index) =>
               loggedIn ? (
                 menu?.name === 'Sign out' ? (
