@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../layouts/Layout';
+import NewArticleScreen from '@/components/templates/NewArticleScreen';
 
 function NewArticle() {
   return (
     <Layout>
-      <div>NewArticle</div>
+      <NewArticleScreen />
     </Layout>
   );
 }

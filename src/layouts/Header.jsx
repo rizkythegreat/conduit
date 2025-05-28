@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Box from '../components/atom/Box';
 import { authenticatedMenus, unauthenticatedMenus } from '../utils/constants';
 import { useEffect, useState } from 'react';
@@ -9,8 +9,18 @@ import { List, X } from '@phosphor-icons/react';
 function Header() {
   const [menus, setMenus] = useState([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  console.log('pathname', pathname);
   const { handleOpenModalRegister, handleOpenModalLogin, loggedIn, handleSignOutButton } =
     useContext(AuthContext);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const isActive = (menuLink) => {
+    return pathname === menuLink || (menuLink !== '/' && pathname.startsWith(menuLink));
+  };
 
   useEffect(() => {
     if (loggedIn) {
@@ -19,10 +29,6 @@ function Header() {
       setMenus(unauthenticatedMenus);
     }
   }, []);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
   return (
     <>
       <Box className={'w-full bg-transparent mx-auto my-5'}>
@@ -44,7 +50,10 @@ function Header() {
                       {menu.name}
                     </button>
                   ) : (
-                    <Link className="px-4 py-2 text-sm" key={index} to={menu.link}>
+                    <Link
+                      className={`px-4 py-2 text-sm ${isActive(menu.link) ? 'text-black' : 'text-gray-500 hover:text-black transition-btn'}`}
+                      key={index}
+                      to={menu.link}>
                       {menu.name}
                     </Link>
                   )

@@ -1,7 +1,7 @@
 export const authenticatedMenus = [
   {
     name: 'Home',
-    link: '/'
+    link: '/homepage'
   },
   {
     name: 'New Article',
